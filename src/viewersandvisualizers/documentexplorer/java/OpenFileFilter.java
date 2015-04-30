@@ -1,3 +1,4 @@
+package viewersandvisualizers.documentexplorer.java;
 /* 
  * Copyright 2001-2014 Aspose Pty Ltd. All Rights Reserved.
  *

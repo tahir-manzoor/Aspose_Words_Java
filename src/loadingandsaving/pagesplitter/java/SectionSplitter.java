@@ -257,7 +257,7 @@ public class SectionSplitter extends DocumentVisitor {
         return mListLevelToPageLookup.containsKey(para.getListFormat().getListLevel()) && (Integer) mListLevelToPageLookup.get(para.getListFormat().getListLevel()) != mPageNumberFinder.GetPage(para);
     }
 
-    private void RemovePageBreaksFromParagraph(Paragraph para) {
+    private void RemovePageBreaksFromParagraph(Paragraph para) throws Exception {
         if (para != null) {
             for (Run run : para.getRuns())
                 run.setText(run.getText().replace(ControlChar.PAGE_BREAK, ""));

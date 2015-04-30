@@ -47,8 +47,8 @@ public class CompressImages
 
         // Verify that the first image was compressed by checking the new Ppi.
         doc = new Document(dstFileName);
-        DrawingML shape = (DrawingML)doc.getChild(NodeType.DRAWING_ML, 0, true);
-        double imagePpi = shape.getImageData().getImageSize().getWidthPixels() / ConvertUtil.pointToInch(shape.getSize().getX());
+        Shape shape = (Shape)doc.getChild(NodeType.SHAPE, 0, true);
+        double imagePpi = shape.getImageData().getImageSize().getWidthPixels() / ConvertUtil.pointToInch(shape.getSizeInPoints().getX());
 
         assert (imagePpi < 150) : "Image was not resampled successfully.";
     }

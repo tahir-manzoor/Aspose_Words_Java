@@ -15,6 +15,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
+
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
@@ -46,22 +47,13 @@ public class Resampler
                 count++;
         }
 
-        // Convert DrawingML shapes.
-        for (DrawingML dmlShape : (Iterable<DrawingML>) doc.getChildNodes(NodeType.DRAWING_ML, true, false))
-        {
-            // In MS Word the size of a DrawingML shape is always in points at the moment.
-            Point2D.Float shapeSizeInPoints = dmlShape.getSize();
-            if (resampleCore(dmlShape.getImageData(), shapeSizeInPoints, desiredPpi, jpegQuality))
-                count++;
-        }
-
         return count;
     }
 
     /**
      * Resamples one VML or DrawingML image
      */
-    private static boolean resampleCore(IImageData imageData, Point2D.Float shapeSizeInPoints, int ppi, int jpegQuality) throws Exception
+    private static boolean resampleCore(ImageData imageData, Point2D.Float shapeSizeInPoints, int ppi, int jpegQuality) throws Exception
     {
         // The are actually several shape types that can have an image (picture, ole object, ole control), let's skip other shapes.
         if (imageData == null)
